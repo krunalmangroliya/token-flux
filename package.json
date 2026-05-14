@@ -6,7 +6,7 @@
   "homepage": "https://www.raininfotech.com/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/raininfotech/token-flux.git"
+    "url": "https://github.com/krunalmangroliya/token-flux.git"
   },
   "type": "module",
   "bin": {
