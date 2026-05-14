@@ -1,0 +1,17 @@
+{
+  "id": "08-refactor-split",
+  "kind": "refactor",
+  "fixture": "ts-small",
+  "prompt": "Refactor: split src/math.mjs so that `div` lives in its own file src/divide.mjs. Re-export div from math.mjs so existing imports keep working. No behavior change.",
+  "setup": {},
+  "referenceDiff": [
+    {
+      "path": "src/math.mjs",
+      "content": "// Simple math helpers.\nexport { div } from './divide.mjs';\n\nexport function add(a, b) {\n  return a + b;\n}\n\nexport function sub(a, b) {\n  return a - b;\n}\n\nexport function mul(a, b) {\n  return a * b;\n}\n"
+    },
+    {
+      "path": "src/divide.mjs",
+      "content": "// Division helper, extracted for isolation of the zero-guard.\nexport function div(a, b) {\n  if (b === 0) throw new Error('division by zero');\n  return a / b;\n}\n"
+    }
+  ]
+}

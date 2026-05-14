@@ -1,0 +1,17 @@
+{
+  "id": "07-add-test-for-mul",
+  "kind": "add-test",
+  "fixture": "ts-small",
+  "prompt": "Coverage gap: mul() has no test. Add a test for mul that covers a positive case, a zero case, and a negative case.",
+  "setup": {
+    "writeFiles": {
+      "tests/math.test.mjs": "import { test } from 'node:test';\nimport assert from 'node:assert/strict';\nimport { add, sub, div } from '../src/math.mjs';\n\ntest('add', () => { assert.equal(add(2, 3), 5); });\ntest('sub', () => { assert.equal(sub(5, 2), 3); });\ntest('div', () => { assert.equal(div(10, 2), 5); });\ntest('div by zero', () => {\n  assert.throws(() => div(1, 0), /division by zero/);\n});\n"
+    }
+  },
+  "referenceDiff": [
+    {
+      "path": "tests/math.test.mjs",
+      "content": "import { test } from 'node:test';\nimport assert from 'node:assert/strict';\nimport { add, sub, mul, div } from '../src/math.mjs';\n\ntest('add', () => { assert.equal(add(2, 3), 5); });\ntest('sub', () => { assert.equal(sub(5, 2), 3); });\ntest('div', () => { assert.equal(div(10, 2), 5); });\ntest('div by zero', () => {\n  assert.throws(() => div(1, 0), /division by zero/);\n});\ntest('mul positive', () => { assert.equal(mul(4, 3), 12); });\ntest('mul zero', () => { assert.equal(mul(7, 0), 0); });\ntest('mul negative', () => { assert.equal(mul(-3, 4), -12); });\n"
+    }
+  ]
+}

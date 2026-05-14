@@ -1,0 +1,17 @@
+{
+  "id": "01-add-mod",
+  "kind": "add-feature",
+  "fixture": "ts-small",
+  "prompt": "Add a `mod(a, b)` function to src/math.mjs that returns a % b, and a corresponding test in tests/math.test.mjs that covers mod(10, 3) === 1 and mod(-1, 4) === 3.",
+  "setup": {},
+  "referenceDiff": [
+    {
+      "path": "src/math.mjs",
+      "content": "// Simple math helpers.\nexport function add(a, b) {\n  return a + b;\n}\n\nexport function sub(a, b) {\n  return a - b;\n}\n\nexport function mul(a, b) {\n  return a * b;\n}\n\nexport function div(a, b) {\n  if (b === 0) throw new Error('division by zero');\n  return a / b;\n}\n\nexport function mod(a, b) {\n  // Euclidean modulo — result always has the sign of b (or zero).\n  const r = a % b;\n  return r < 0 && b > 0 ? r + b : r > 0 && b < 0 ? r + b : r;\n}\n"
+    },
+    {
+      "path": "tests/math.test.mjs",
+      "content": "import { test } from 'node:test';\nimport assert from 'node:assert/strict';\nimport { add, sub, mul, div, mod } from '../src/math.mjs';\n\ntest('add', () => { assert.equal(add(2, 3), 5); });\ntest('sub', () => { assert.equal(sub(5, 2), 3); });\ntest('mul', () => { assert.equal(mul(4, 3), 12); });\ntest('div', () => { assert.equal(div(10, 2), 5); });\ntest('div by zero', () => {\n  assert.throws(() => div(1, 0), /division by zero/);\n});\ntest('mod positive', () => { assert.equal(mod(10, 3), 1); });\ntest('mod negative', () => { assert.equal(mod(-1, 4), 3); });\n"
+    }
+  ]
+}

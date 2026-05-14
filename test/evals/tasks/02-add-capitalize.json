@@ -1,0 +1,17 @@
+{
+  "id": "02-add-capitalize",
+  "kind": "add-feature",
+  "fixture": "ts-small",
+  "prompt": "Add a `capitalize(s)` function to src/strings.mjs that returns s with the first letter uppercased and the rest unchanged. Empty strings return empty. Add a test.",
+  "setup": {},
+  "referenceDiff": [
+    {
+      "path": "src/strings.mjs",
+      "content": "// String helpers.\nexport function reverse(s) {\n  return [...s].reverse().join('');\n}\n\nexport function slug(s) {\n  return s\n    .toLowerCase()\n    .replace(/[^a-z0-9]+/g, '-')\n    .replace(/^-+|-+$/g, '');\n}\n\nexport function capitalize(s) {\n  if (!s) return s;\n  return s[0].toUpperCase() + s.slice(1);\n}\n"
+    },
+    {
+      "path": "tests/strings.test.mjs",
+      "content": "import { test } from 'node:test';\nimport assert from 'node:assert/strict';\nimport { reverse, slug, capitalize } from '../src/strings.mjs';\n\ntest('reverse', () => { assert.equal(reverse('hello'), 'olleh'); });\ntest('slug basic', () => { assert.equal(slug('Hello World'), 'hello-world'); });\ntest('slug collapses punctuation', () => { assert.equal(slug('foo -- bar!'), 'foo-bar'); });\ntest('capitalize basic', () => { assert.equal(capitalize('hello'), 'Hello'); });\ntest('capitalize empty', () => { assert.equal(capitalize(''), ''); });\ntest('capitalize preserves rest', () => { assert.equal(capitalize('hELLO'), 'HELLO'); });\n"
+    }
+  ]
+}

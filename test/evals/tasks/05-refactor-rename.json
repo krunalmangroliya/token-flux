@@ -1,0 +1,17 @@
+{
+  "id": "05-refactor-rename",
+  "kind": "refactor",
+  "fixture": "ts-small",
+  "prompt": "Rename `slug` to `slugify` across src/ and tests/. All existing tests must still pass.",
+  "setup": {},
+  "referenceDiff": [
+    {
+      "path": "src/strings.mjs",
+      "content": "// String helpers.\nexport function reverse(s) {\n  return [...s].reverse().join('');\n}\n\nexport function slugify(s) {\n  return s\n    .toLowerCase()\n    .replace(/[^a-z0-9]+/g, '-')\n    .replace(/^-+|-+$/g, '');\n}\n"
+    },
+    {
+      "path": "tests/strings.test.mjs",
+      "content": "import { test } from 'node:test';\nimport assert from 'node:assert/strict';\nimport { reverse, slugify } from '../src/strings.mjs';\n\ntest('reverse', () => { assert.equal(reverse('hello'), 'olleh'); });\ntest('slugify basic', () => { assert.equal(slugify('Hello World'), 'hello-world'); });\ntest('slugify collapses punctuation', () => { assert.equal(slugify('foo -- bar!'), 'foo-bar'); });\n"
+    }
+  ]
+}

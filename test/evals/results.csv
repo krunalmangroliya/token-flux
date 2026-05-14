@@ -1,0 +1,11 @@
+task,run,pass,note,durationMs
+01-add-mod,1,1,"verify 0",170
+02-add-capitalize,1,1,"verify 0",153
+03-fix-slug-trailing,1,1,"verify 0",145
+04-fix-div-type,1,1,"verify 0",154
+05-refactor-rename,1,1,"verify 0",163
+06-py-add-mul,1,1,"verify 0",2023
+07-add-test-for-mul,1,1,"verify 0",225
+08-refactor-split,1,1,"verify 0",149
+09-fix-reverse-unicode,1,1,"verify 0",175
+10-py-add-coverage,1,1,"verify 0",265

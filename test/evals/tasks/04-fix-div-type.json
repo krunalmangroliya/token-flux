@@ -1,0 +1,17 @@
+{
+  "id": "04-fix-div-type",
+  "kind": "fix-bug",
+  "fixture": "ts-small",
+  "prompt": "Bug: div(10, '2') returns a string '5' due to JS coercion. div should reject non-number arguments with a TypeError.",
+  "setup": {
+    "writeFiles": {
+      "tests/math.test.mjs": "import { test } from 'node:test';\nimport assert from 'node:assert/strict';\nimport { add, sub, mul, div } from '../src/math.mjs';\n\ntest('add', () => { assert.equal(add(2, 3), 5); });\ntest('sub', () => { assert.equal(sub(5, 2), 3); });\ntest('mul', () => { assert.equal(mul(4, 3), 12); });\ntest('div', () => { assert.equal(div(10, 2), 5); });\ntest('div by zero', () => {\n  assert.throws(() => div(1, 0), /division by zero/);\n});\ntest('div rejects non-number', () => {\n  assert.throws(() => div(10, '2'), TypeError);\n});\n"
+    }
+  },
+  "referenceDiff": [
+    {
+      "path": "src/math.mjs",
+      "content": "// Simple math helpers.\nexport function add(a, b) {\n  return a + b;\n}\n\nexport function sub(a, b) {\n  return a - b;\n}\n\nexport function mul(a, b) {\n  return a * b;\n}\n\nexport function div(a, b) {\n  if (typeof a !== 'number' || typeof b !== 'number') {\n    throw new TypeError('div expects numbers');\n  }\n  if (b === 0) throw new Error('division by zero');\n  return a / b;\n}\n"
+    }
+  ]
+}

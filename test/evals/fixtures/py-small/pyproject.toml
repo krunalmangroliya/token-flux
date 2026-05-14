@@ -1,0 +1,7 @@
+[project]
+name = "py-small-fixture"
+version = "0.0.1"
+requires-python = ">=3.9"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

@@ -1,0 +1,17 @@
+{
+  "id": "09-fix-reverse-unicode",
+  "kind": "fix-bug",
+  "fixture": "ts-small",
+  "prompt": "Bug: reverse() already uses [...s] which handles surrogate pairs, but it fails on combining marks (e.g. 'e\\u0301'). Improve to use Intl.Segmenter so graphemes are kept together.",
+  "setup": {
+    "writeFiles": {
+      "tests/strings.test.mjs": "import { test } from 'node:test';\nimport assert from 'node:assert/strict';\nimport { reverse, slug } from '../src/strings.mjs';\n\ntest('reverse ascii', () => { assert.equal(reverse('hello'), 'olleh'); });\ntest('slug basic', () => { assert.equal(slug('Hello World'), 'hello-world'); });\ntest('reverse combining mark', () => {\n  // 'e\\u0301' is e + combining acute. Reverse should keep them together.\n  const input = 'a' + '\\u0065\\u0301';\n  const out = reverse(input);\n  assert.equal(out, '\\u0065\\u0301' + 'a');\n});\n"
+    }
+  },
+  "referenceDiff": [
+    {
+      "path": "src/strings.mjs",
+      "content": "// String helpers.\nexport function reverse(s) {\n  if (typeof Intl !== 'undefined' && Intl.Segmenter) {\n    const seg = new Intl.Segmenter(undefined, { granularity: 'grapheme' });\n    const parts = [];\n    for (const { segment } of seg.segment(s)) parts.push(segment);\n    return parts.reverse().join('');\n  }\n  return [...s].reverse().join('');\n}\n\nexport function slug(s) {\n  return s\n    .toLowerCase()\n    .replace(/[^a-z0-9]+/g, '-')\n    .replace(/^-+|-+$/g, '');\n}\n"
+    }
+  ]
+}

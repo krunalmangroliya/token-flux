@@ -1,0 +1,69 @@
+{
+  "name": "token-flux",
+  "version": "1.0.0",
+  "description": "token-flux — adaptive AI coding assistant enhancer. Auto-detects your model, boosts weak models with expert prompts, saves tokens on strong models. 3 modes: boost, saver, both.",
+  "author": "Rain Infotech",
+  "homepage": "https://www.raininfotech.com/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/raininfotech/token-flux.git"
+  },
+  "type": "module",
+  "bin": {
+    "token-flux": "bin/token-flux.mjs"
+  },
+  "main": "./src/index.mjs",
+  "files": [
+    "bin",
+    "src",
+    "templates",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "node --test test/unit/*.test.mjs",
+    "eval": "node src/eval/runner.mjs",
+    "lint": "node -e \"console.log('no linter configured for this meta-package')\""
+  },
+  "keywords": [
+    "token-flux",
+    "agent",
+    "coding-agent",
+    "weak-model",
+    "llm",
+    "codemap",
+    "claude",
+    "cursor",
+    "cline",
+    "aider",
+    "token-saving",
+    "token-saver",
+    "token-optimization",
+    "token-reduction",
+    "token-efficiency",
+    "cost-saving",
+    "prompt-compression",
+    "caveman-mode",
+    "flash-enhancer",
+    "context-window",
+    "ai-tools",
+    "antigravity",
+    "windsurf",
+    "opencode",
+    "rain-infotech",
+    "raininfotech"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "commander": "^11.1.0",
+    "fast-glob": "^3.3.2",
+    "picocolors": "^1.0.0",
+    "prompts": "^2.4.2",
+    "typescript": "^5.3.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0"
+  }
+}

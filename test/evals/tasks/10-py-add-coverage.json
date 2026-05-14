@@ -1,0 +1,13 @@
+{
+  "id": "10-py-add-coverage",
+  "kind": "add-test",
+  "fixture": "py-small",
+  "prompt": "Coverage gap: add() and sub() have tests but their integer cases only — no negative or float cases. Extend tests/test_math.py with a negative case and a float case for each.",
+  "setup": {},
+  "referenceDiff": [
+    {
+      "path": "tests/test_math.py",
+      "content": "import unittest\nimport sys\nimport pathlib\nsys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))\nfrom src.math_utils import add, sub, div\n\n\nclass TestMath(unittest.TestCase):\n    def test_add(self):\n        self.assertEqual(add(2, 3), 5)\n\n    def test_add_negative(self):\n        self.assertEqual(add(-5, 3), -2)\n\n    def test_add_float(self):\n        self.assertAlmostEqual(add(0.1, 0.2), 0.3)\n\n    def test_sub(self):\n        self.assertEqual(sub(5, 2), 3)\n\n    def test_sub_negative(self):\n        self.assertEqual(sub(-5, -3), -2)\n\n    def test_sub_float(self):\n        self.assertAlmostEqual(sub(1.5, 0.5), 1.0)\n\n    def test_div(self):\n        self.assertEqual(div(10, 2), 5)\n\n    def test_div_zero(self):\n        with self.assertRaises(ValueError):\n            div(1, 0)\n\n\nif __name__ == '__main__':\n    unittest.main()\n"
+    }
+  ]
+}
