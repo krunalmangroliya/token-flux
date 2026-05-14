@@ -15,7 +15,7 @@
 
 AI coding agents are incredible, but they come with two massive trade-offs depending on the model you use:
 
-- **Strong Models (e.g., Claude 3.5 Sonnet, GPT-4o)**: They are brilliant but **expensive**. Agents tend to consume massive amounts of tokens reading irrelevant files, parsing verbose terminal outputs (like `npm test`), and using wordy prompts.
+- **Strong Models (e.g., Claude Opus-4.7 & Sonnet-4.6, GPT-5.5)**: They are brilliant but **expensive**. Agents tend to consume massive amounts of tokens reading irrelevant files, parsing verbose terminal outputs (like `npm test`), and using wordy prompts.
 - **Weaker/Cheaper/Local Models**: They are cost-effective but often **hallucinate**, forget past mistakes, skip tests, and fail to understand the broader project architecture.
 
 ## 💡 The Solution
